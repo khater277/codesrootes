@@ -9,8 +9,8 @@ import 'package:codesroots/features/products/presentation/widgets/product_card.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductsView extends StatelessWidget {
-  const ProductsView({super.key});
+class ProductsScreen extends StatelessWidget {
+  const ProductsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,12 @@ class ProductsView extends StatelessWidget {
         return state.maybeWhen(
           getProductsLoading: () =>
               const Center(child: CustomCircleIndicator()),
-          getProductsError: (errorMsg) =>
-              Center(child: SmallHeadText(text: errorMsg)),
+          getProductsError: (errorMsg) => Center(
+              child: SmallHeadText(
+            text: errorMsg,
+            maxLines: 10,
+            center: true,
+          )),
           orElse: () => di<ProductsCubit>().products.isNotEmpty
               ? ListView.separated(
                   physics: const BouncingScrollPhysics(),

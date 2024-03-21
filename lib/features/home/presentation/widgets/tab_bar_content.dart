@@ -1,9 +1,9 @@
 import 'package:codesroots/app/injector.dart';
 import 'package:codesroots/core/utils/app_enums.dart';
 import 'package:codesroots/core/utils/app_values.dart';
-import 'package:codesroots/features/doctors/presentation/widgets/doctors_view.dart';
+import 'package:codesroots/features/doctors/presentation/screens/doctors_screen.dart';
 import 'package:codesroots/features/home/presentation/cubit/home_cubit.dart';
-import 'package:codesroots/features/products/presentation/widgets/products_view.dart';
+import 'package:codesroots/features/products/presentation/screens/products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,8 +24,8 @@ class TabBarContent extends StatelessWidget {
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppWidth.w10),
                     child: (element.tabBarType == TabBarType.doctors)
-                        ? const DoctorsView()
-                        : const ProductsView(),
+                        ? const DoctorsScreen()
+                        : const ProductsScreen(),
                   );
                 }).toList());
           },
