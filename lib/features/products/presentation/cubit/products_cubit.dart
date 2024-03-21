@@ -1,8 +1,6 @@
-import 'package:bloc/bloc.dart';
-import 'package:codesroots/core/apis/products/products_api.dart';
 import 'package:codesroots/features/products/data/models/get_products_response/product.dart';
 import 'package:codesroots/features/products/domain/usecases/get_products_usecase.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'products_state.dart';
@@ -20,8 +18,8 @@ class ProductsCubit extends Cubit<ProductsState> {
     final response = await _getProductsUsecase.call(NoParams());
     response.fold(
       (failure) => emit(ProductsState.getProductsError(failure.getMessage())),
-      (getProductsResponse) {
-        products = getProductsResponse.data!.products ?? [];
+      (products) {
+        this.products = products;
         emit(ProductsState.getProducts(products));
       },
     );

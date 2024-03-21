@@ -1,8 +1,7 @@
 import 'package:codesroots/core/errors/failures.dart';
 import 'package:codesroots/core/network/network_info.dart';
-import 'package:codesroots/features/products/data/datasources/products_remote_datasource.dart';
-import 'package:codesroots/features/products/data/models/get_products_response/get_products_response.dart';
-
+import 'package:codesroots/features/products/data/datasources/products_remote_data_source.dart';
+import 'package:codesroots/features/products/data/models/get_products_response/product.dart';
 import 'package:codesroots/features/products/domain/repositories/products_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -17,7 +16,7 @@ class ProductsRepositoryImpl implements ProductsRepository {
       : _networkInfo = networkInfo,
         _productsRemoteDataSource = productsRemoteDataSource;
   @override
-  Future<Either<Failure, GetProductsResponse>> getProducts() async {
+  Future<Either<Failure, List<Product>>> getProducts() async {
     if (await _networkInfo.connected()) {
       try {
         final response = await _productsRemoteDataSource.getProducts();

@@ -5,7 +5,6 @@ import 'package:codesroots/core/utils/app_images.dart';
 import 'package:codesroots/core/utils/app_values.dart';
 import 'package:codesroots/features/doctors/presentation/widgets/doctor_card_hint.dart';
 import 'package:codesroots/features/products/data/models/get_products_response/product.dart';
-
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {

@@ -7,7 +7,6 @@ import 'package:codesroots/features/home/presentation/widgets/no_data_to_show.da
 import 'package:codesroots/features/products/presentation/cubit/products_cubit.dart';
 import 'package:codesroots/features/products/presentation/widgets/product_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsView extends StatelessWidget {

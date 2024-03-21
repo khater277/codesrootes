@@ -7,7 +7,7 @@ import 'package:codesroots/features/doctors/domain/repositories/doctors_reposito
 import 'package:codesroots/features/doctors/domain/usecases/get_doctors_usecase.dart';
 import 'package:codesroots/features/doctors/presentation/cubit/doctors_cubit.dart';
 import 'package:codesroots/features/home/presentation/cubit/home_cubit.dart';
-import 'package:codesroots/features/products/data/datasources/products_remote_datasource.dart';
+import 'package:codesroots/features/products/data/datasources/products_remote_data_source.dart';
 import 'package:codesroots/features/products/data/repositories/products_repository_impl.dart';
 import 'package:codesroots/features/products/domain/repositories/products_repository.dart';
 import 'package:codesroots/features/products/domain/usecases/get_products_usecase.dart';
