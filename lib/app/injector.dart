@@ -1,4 +1,5 @@
 import 'package:codesroots/core/apis/doctors/doctors_api.dart';
+import 'package:codesroots/core/apis/doctors/doctors_dio.dart';
 import 'package:codesroots/core/apis/doctors/doctors_end_points.dart';
 import 'package:codesroots/core/apis/products/products_api.dart';
 import 'package:codesroots/features/doctors/data/datasources/doctors_remote_data_source.dart';
@@ -66,35 +67,41 @@ void setupGetIt() {
       () => InternetConnectionChecker());
 
   /// APIS
-  di.registerLazySingleton<DoctorsApi>(() => DoctorsApi(di()));
+  /// DIOs
+  di.registerLazySingleton<DoctorsDio>(() => DoctorsDioImpl());
+
+  /// APIS
+  di.registerLazySingleton<DoctorsApi>(
+    () => DoctorsApiImpl(dio: di<DoctorsDio>().dio()),
+  );
   di.registerLazySingleton<ProductsApi>(() => ProductsApi());
 
   /// DIOs
-  Dio createAndSetupDoctorsDio() {
-    Dio dio = Dio();
+  // Dio createAndSetupDoctorsDio() {
+  //   Dio dio = Dio();
 
-    dio.options
-      ..baseUrl = DoctorsEndPoints.baseUrl
-      ..responseType = ResponseType.plain
-      ..headers = {
-        'Content-Type': 'application/json',
-      }
-      ..connectTimeout = const Duration(seconds: 60)
-      // ..receiveTimeout = const Duration(seconds: 60)
-      ..followRedirects = false;
+  //   dio.options
+  //     ..baseUrl = DoctorsEndPoints.baseUrl
+  //     ..responseType = ResponseType.plain
+  //     ..headers = {
+  //       'Content-Type': 'application/json',
+  //     }
+  //     ..connectTimeout = const Duration(seconds: 60)
+  //     // ..receiveTimeout = const Duration(seconds: 60)
+  //     ..followRedirects = false;
 
-    dio.interceptors.add(
-      LogInterceptor(
-          request: true,
-          requestBody: true,
-          requestHeader: true,
-          responseBody: true,
-          responseHeader: true,
-          error: true),
-    );
+  //   dio.interceptors.add(
+  //     LogInterceptor(
+  //         request: true,
+  //         requestBody: true,
+  //         requestHeader: true,
+  //         responseBody: true,
+  //         responseHeader: true,
+  //         error: true),
+  //   );
 
-    return dio;
-  }
+  //   return dio;
+  // }
 
-  di.registerLazySingleton<Dio>(() => createAndSetupDoctorsDio());
+  // di.registerLazySingleton<Dio>(() => createAndSetupDoctorsDio());
 }

@@ -4,8 +4,6 @@ import 'package:gql/language.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class ProductsApi {
-  static GraphQLClient? _client;
-
   static final HttpLink _httpLink = HttpLink(
     ProductsEndPoints.baseUrl,
     defaultHeaders: {
@@ -14,14 +12,11 @@ class ProductsApi {
   );
   static final AuthLink _authLink =
       AuthLink(getToken: () => ProductsEndPoints.token);
-  static final Link _link = _authLink.concat(_httpLink);
 
-  Future<void> init() async {
-    _client = GraphQLClient(
-      link: _link,
-      cache: GraphQLCache(),
-    );
-  }
+  static final GraphQLClient _client = GraphQLClient(
+    link: _authLink.concat(_httpLink),
+    cache: GraphQLCache(),
+  );
 
   Future<QueryResult> getProductsQuery() async {
     QueryOptions options = QueryOptions(
@@ -40,7 +35,7 @@ class ProductsApi {
       ).toJson(),
     );
 
-    final result = await _client!.query(options);
+    final result = await _client.query(options);
 
     return result;
   }

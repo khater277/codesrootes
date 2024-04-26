@@ -33,8 +33,8 @@ class ServerFailure extends Failure {
         break;
       case NetworkErrorTypes.api:
         result = FailureBody(
-            message: NetworkExceptions.getErrorMessage(
-                NetworkExceptions.getDioException(error)));
+          message: NetworkExceptions.getDioException(error).getMessage(),
+        );
         break;
       default:
         result = e;
